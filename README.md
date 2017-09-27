@@ -1,4 +1,4 @@
-# bitcoin-regtest
+# bitcoin-regtest-rpc
 
 # build
 docker build -t mybitcoind .
