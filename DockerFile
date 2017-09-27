@@ -1,0 +1,20 @@
+FROM ubuntu:xenial
+
+RUN apt-get -y update
+RUN apt-get install -y python-software-properties 
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:bitcoin/bitcoin
+RUN apt-get update
+RUN apt-get install -y bitcoind
+
+#bitcoin.conf
+RUN mkdir ~/.bitcoin
+RUN echo "server=1\n" >> ~/.bitcoin/bitcoin.conf
+RUN echo "regtest=1\n" >> ~/.bitcoin/bitcoin.conf
+RUN echo "rpcuser=test\n" >> ~/.bitcoin/bitcoin.conf
+#change this
+RUN echo "rpcpassword=test\n" >> ~/.bitcoin/bitcoin.conf
+RUN echo "rpcport=18332\n" >> ~/.bitcoin/bitcoin.conf
+RUN echo "rpcallowip=0.0.0.0/0\n" >> ~/.bitcoin/bitcoin.conf
+
+CMD ["bitcoind","-regtest"]
